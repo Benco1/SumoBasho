@@ -16,6 +16,11 @@
 		549B3A781A59E34000EBE388 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 549B3A771A59E34000EBE388 /* Images.xcassets */; };
 		549B3A7B1A59E34000EBE388 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 549B3A791A59E34000EBE388 /* LaunchScreen.xib */; };
 		549B3A871A59E34000EBE388 /* SumoBashoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 549B3A861A59E34000EBE388 /* SumoBashoTests.m */; };
+		549B3A911A59F65A00EBE388 /* SumoSpriteTEST@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 549B3A901A59F65A00EBE388 /* SumoSpriteTEST@2x.png */; };
+		549B3A931A59F6DF00EBE388 /* Hero.m in Sources */ = {isa = PBXBuildFile; fileRef = 549B3A921A59F6DF00EBE388 /* Hero.m */; };
+		549B3A971A59F71A00EBE388 /* GameData.m in Sources */ = {isa = PBXBuildFile; fileRef = 549B3A961A59F71A00EBE388 /* GameData.m */; };
+		549B3A991A59F74400EBE388 /* Notes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 549B3A981A59F74400EBE388 /* Notes.rtf */; };
+		549B3A9C1A59F7E200EBE388 /* ResultsScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 549B3A9B1A59F7E200EBE388 /* ResultsScene.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +50,14 @@
 		549B3A801A59E34000EBE388 /* SumoBashoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SumoBashoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		549B3A851A59E34000EBE388 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		549B3A861A59E34000EBE388 /* SumoBashoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SumoBashoTests.m; sourceTree = "<group>"; };
+		549B3A901A59F65A00EBE388 /* SumoSpriteTEST@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SumoSpriteTEST@2x.png"; sourceTree = "<group>"; };
+		549B3A921A59F6DF00EBE388 /* Hero.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Hero.m; sourceTree = "<group>"; };
+		549B3A941A59F6EE00EBE388 /* Hero.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Hero.h; sourceTree = "<group>"; };
+		549B3A951A59F71A00EBE388 /* GameData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameData.h; sourceTree = "<group>"; };
+		549B3A961A59F71A00EBE388 /* GameData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameData.m; sourceTree = "<group>"; };
+		549B3A981A59F74400EBE388 /* Notes.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Notes.rtf; sourceTree = "<group>"; };
+		549B3A9A1A59F7E200EBE388 /* ResultsScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsScene.h; sourceTree = "<group>"; };
+		549B3A9B1A59F7E200EBE388 /* ResultsScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsScene.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +100,14 @@
 			isa = PBXGroup;
 			children = (
 				549B3A691A59E34000EBE388 /* AppDelegate.h */,
+				549B3A901A59F65A00EBE388 /* SumoSpriteTEST@2x.png */,
+				549B3A951A59F71A00EBE388 /* GameData.h */,
+				549B3A961A59F71A00EBE388 /* GameData.m */,
+				549B3A941A59F6EE00EBE388 /* Hero.h */,
+				549B3A9A1A59F7E200EBE388 /* ResultsScene.h */,
+				549B3A9B1A59F7E200EBE388 /* ResultsScene.m */,
+				549B3A981A59F74400EBE388 /* Notes.rtf */,
+				549B3A921A59F6DF00EBE388 /* Hero.m */,
 				549B3A6A1A59E34000EBE388 /* AppDelegate.m */,
 				549B3A6C1A59E34000EBE388 /* GameScene.h */,
 				549B3A6D1A59E34000EBE388 /* GameScene.m */,
@@ -211,6 +232,8 @@
 				549B3A781A59E34000EBE388 /* Images.xcassets in Resources */,
 				549B3A701A59E34000EBE388 /* GameScene.sks in Resources */,
 				549B3A761A59E34000EBE388 /* Main.storyboard in Resources */,
+				549B3A991A59F74400EBE388 /* Notes.rtf in Resources */,
+				549B3A911A59F65A00EBE388 /* SumoSpriteTEST@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,8 +251,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				549B3A931A59F6DF00EBE388 /* Hero.m in Sources */,
 				549B3A731A59E34000EBE388 /* GameViewController.m in Sources */,
 				549B3A6B1A59E34000EBE388 /* AppDelegate.m in Sources */,
+				549B3A971A59F71A00EBE388 /* GameData.m in Sources */,
+				549B3A9C1A59F7E200EBE388 /* ResultsScene.m in Sources */,
 				549B3A6E1A59E34000EBE388 /* GameScene.m in Sources */,
 				549B3A681A59E34000EBE388 /* main.m in Sources */,
 			);

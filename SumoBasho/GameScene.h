@@ -8,6 +8,10 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface GameScene : SKScene
+@interface GameScene : SKScene <SKPhysicsContactDelegate>
+
+@property (nonatomic) int heroPoints;
+@property (nonatomic) int opponentPoints;
+@property (nonatomic) NSString *matchWinner;
 
 @end
