@@ -1,0 +1,437 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		549B3A681A59E34000EBE388 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 549B3A671A59E34000EBE388 /* main.m */; };
+		549B3A6B1A59E34000EBE388 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 549B3A6A1A59E34000EBE388 /* AppDelegate.m */; };
+		549B3A6E1A59E34000EBE388 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 549B3A6D1A59E34000EBE388 /* GameScene.m */; };
+		549B3A701A59E34000EBE388 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 549B3A6F1A59E34000EBE388 /* GameScene.sks */; };
+		549B3A731A59E34000EBE388 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 549B3A721A59E34000EBE388 /* GameViewController.m */; };
+		549B3A761A59E34000EBE388 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 549B3A741A59E34000EBE388 /* Main.storyboard */; };
+		549B3A781A59E34000EBE388 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 549B3A771A59E34000EBE388 /* Images.xcassets */; };
+		549B3A7B1A59E34000EBE388 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 549B3A791A59E34000EBE388 /* LaunchScreen.xib */; };
+		549B3A871A59E34000EBE388 /* SumoBashoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 549B3A861A59E34000EBE388 /* SumoBashoTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		549B3A811A59E34000EBE388 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 549B3A5A1A59E33F00EBE388 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 549B3A611A59E34000EBE388;
+			remoteInfo = SumoBasho;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		549B3A621A59E34000EBE388 /* SumoBasho.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SumoBasho.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		549B3A661A59E34000EBE388 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		549B3A671A59E34000EBE388 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		549B3A691A59E34000EBE388 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		549B3A6A1A59E34000EBE388 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		549B3A6C1A59E34000EBE388 /* GameScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
+		549B3A6D1A59E34000EBE388 /* GameScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
+		549B3A6F1A59E34000EBE388 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		549B3A711A59E34000EBE388 /* GameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
+		549B3A721A59E34000EBE388 /* GameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
+		549B3A751A59E34000EBE388 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		549B3A771A59E34000EBE388 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		549B3A7A1A59E34000EBE388 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		549B3A801A59E34000EBE388 /* SumoBashoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SumoBashoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		549B3A851A59E34000EBE388 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		549B3A861A59E34000EBE388 /* SumoBashoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SumoBashoTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		549B3A5F1A59E34000EBE388 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		549B3A7D1A59E34000EBE388 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		549B3A591A59E33F00EBE388 = {
+			isa = PBXGroup;
+			children = (
+				549B3A641A59E34000EBE388 /* SumoBasho */,
+				549B3A831A59E34000EBE388 /* SumoBashoTests */,
+				549B3A631A59E34000EBE388 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		549B3A631A59E34000EBE388 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				549B3A621A59E34000EBE388 /* SumoBasho.app */,
+				549B3A801A59E34000EBE388 /* SumoBashoTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		549B3A641A59E34000EBE388 /* SumoBasho */ = {
+			isa = PBXGroup;
+			children = (
+				549B3A691A59E34000EBE388 /* AppDelegate.h */,
+				549B3A6A1A59E34000EBE388 /* AppDelegate.m */,
+				549B3A6C1A59E34000EBE388 /* GameScene.h */,
+				549B3A6D1A59E34000EBE388 /* GameScene.m */,
+				549B3A6F1A59E34000EBE388 /* GameScene.sks */,
+				549B3A711A59E34000EBE388 /* GameViewController.h */,
+				549B3A721A59E34000EBE388 /* GameViewController.m */,
+				549B3A741A59E34000EBE388 /* Main.storyboard */,
+				549B3A771A59E34000EBE388 /* Images.xcassets */,
+				549B3A791A59E34000EBE388 /* LaunchScreen.xib */,
+				549B3A651A59E34000EBE388 /* Supporting Files */,
+			);
+			path = SumoBasho;
+			sourceTree = "<group>";
+		};
+		549B3A651A59E34000EBE388 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				549B3A661A59E34000EBE388 /* Info.plist */,
+				549B3A671A59E34000EBE388 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		549B3A831A59E34000EBE388 /* SumoBashoTests */ = {
+			isa = PBXGroup;
+			children = (
+				549B3A861A59E34000EBE388 /* SumoBashoTests.m */,
+				549B3A841A59E34000EBE388 /* Supporting Files */,
+			);
+			path = SumoBashoTests;
+			sourceTree = "<group>";
+		};
+		549B3A841A59E34000EBE388 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				549B3A851A59E34000EBE388 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		549B3A611A59E34000EBE388 /* SumoBasho */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 549B3A8A1A59E34000EBE388 /* Build configuration list for PBXNativeTarget "SumoBasho" */;
+			buildPhases = (
+				549B3A5E1A59E34000EBE388 /* Sources */,
+				549B3A5F1A59E34000EBE388 /* Frameworks */,
+				549B3A601A59E34000EBE388 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SumoBasho;
+			productName = SumoBasho;
+			productReference = 549B3A621A59E34000EBE388 /* SumoBasho.app */;
+			productType = "com.apple.product-type.application";
+		};
+		549B3A7F1A59E34000EBE388 /* SumoBashoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 549B3A8D1A59E34000EBE388 /* Build configuration list for PBXNativeTarget "SumoBashoTests" */;
+			buildPhases = (
+				549B3A7C1A59E34000EBE388 /* Sources */,
+				549B3A7D1A59E34000EBE388 /* Frameworks */,
+				549B3A7E1A59E34000EBE388 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				549B3A821A59E34000EBE388 /* PBXTargetDependency */,
+			);
+			name = SumoBashoTests;
+			productName = SumoBashoTests;
+			productReference = 549B3A801A59E34000EBE388 /* SumoBashoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		549B3A5A1A59E33F00EBE388 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = BencoMakes;
+				TargetAttributes = {
+					549B3A611A59E34000EBE388 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					549B3A7F1A59E34000EBE388 = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = 549B3A611A59E34000EBE388;
+					};
+				};
+			};
+			buildConfigurationList = 549B3A5D1A59E33F00EBE388 /* Build configuration list for PBXProject "SumoBasho" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 549B3A591A59E33F00EBE388;
+			productRefGroup = 549B3A631A59E34000EBE388 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				549B3A611A59E34000EBE388 /* SumoBasho */,
+				549B3A7F1A59E34000EBE388 /* SumoBashoTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		549B3A601A59E34000EBE388 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				549B3A7B1A59E34000EBE388 /* LaunchScreen.xib in Resources */,
+				549B3A781A59E34000EBE388 /* Images.xcassets in Resources */,
+				549B3A701A59E34000EBE388 /* GameScene.sks in Resources */,
+				549B3A761A59E34000EBE388 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		549B3A7E1A59E34000EBE388 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		549B3A5E1A59E34000EBE388 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				549B3A731A59E34000EBE388 /* GameViewController.m in Sources */,
+				549B3A6B1A59E34000EBE388 /* AppDelegate.m in Sources */,
+				549B3A6E1A59E34000EBE388 /* GameScene.m in Sources */,
+				549B3A681A59E34000EBE388 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		549B3A7C1A59E34000EBE388 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				549B3A871A59E34000EBE388 /* SumoBashoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		549B3A821A59E34000EBE388 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 549B3A611A59E34000EBE388 /* SumoBasho */;
+			targetProxy = 549B3A811A59E34000EBE388 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		549B3A741A59E34000EBE388 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				549B3A751A59E34000EBE388 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		549B3A791A59E34000EBE388 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				549B3A7A1A59E34000EBE388 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		549B3A881A59E34000EBE388 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		549B3A891A59E34000EBE388 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		549B3A8B1A59E34000EBE388 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = SumoBasho/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		549B3A8C1A59E34000EBE388 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = SumoBasho/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		549B3A8E1A59E34000EBE388 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SumoBashoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SumoBasho.app/SumoBasho";
+			};
+			name = Debug;
+		};
+		549B3A8F1A59E34000EBE388 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SumoBashoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SumoBasho.app/SumoBasho";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		549B3A5D1A59E33F00EBE388 /* Build configuration list for PBXProject "SumoBasho" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				549B3A881A59E34000EBE388 /* Debug */,
+				549B3A891A59E34000EBE388 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		549B3A8A1A59E34000EBE388 /* Build configuration list for PBXNativeTarget "SumoBasho" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				549B3A8B1A59E34000EBE388 /* Debug */,
+				549B3A8C1A59E34000EBE388 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		549B3A8D1A59E34000EBE388 /* Build configuration list for PBXNativeTarget "SumoBashoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				549B3A8E1A59E34000EBE388 /* Debug */,
+				549B3A8F1A59E34000EBE388 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 549B3A5A1A59E33F00EBE388 /* Project object */;
+}
