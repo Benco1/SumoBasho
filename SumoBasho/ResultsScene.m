@@ -80,6 +80,43 @@ static NSString *BAD_MESSAGE = @"Ouch! Too much sake last night?";
     recordLabel.fontSize = 20;
     recordLabel.fontName = GAME_FONT;
     [self addChild:recordLabel];
+    
+    SKLabelNode *playAgainButtonText = [SKLabelNode labelNodeWithText:@"Play Again"];
+    playAgainButtonText.fontColor = [UIColor whiteColor];
+    playAgainButtonText.fontSize = 20;
+    playAgainButtonText.fontName = GAME_FONT;
+    
+    SKSpriteNode *playAgainButtonBacking = [SKSpriteNode
+                                            spriteNodeWithColor:[UIColor blueColor]
+                                            size:CGSizeMake(self.size.width/4, self.size.height/9)];
+    playAgainButtonBacking.name = @"playAgainButtonBackground";
+    playAgainButtonBacking.position = CGPointMake(0, -self.size.height/3);
+    [playAgainButtonBacking addChild:playAgainButtonText];
+    playAgainButtonText.position = CGPointMake(0, -playAgainButtonBacking.size.height/5);
+    [self addChild:playAgainButtonBacking];
+    
+    
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch *touch = [touches anyObject];
+    CGPoint location = [touch locationInNode:self];
+    SKNode *node = [self nodeAtPoint:location];
+        
+    if ([node.name isEqualToString:@"playAgainButtonBackground"]) {
+        [self newGameScene];
+    }
+}
+
+-(void)newGameScene
+{
+    SKScene *newGameScene  = [[GameScene alloc] initWithSize:self.size];
+    SKTransition *doors = [SKTransition doorsOpenVerticalWithDuration:0.5];
+    [self runAction:[SKAction sequence:@[[SKAction waitForDuration:2.0 ],
+                                         [SKAction runBlock:^{
+        [self.view presentScene:newGameScene transition:doors];
+    }]]]];
 }
 
 @end
