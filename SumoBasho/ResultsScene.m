@@ -94,8 +94,6 @@ static NSString *BAD_MESSAGE = @"Ouch! Too much sake last night?";
     [playAgainButtonBacking addChild:playAgainButtonText];
     playAgainButtonText.position = CGPointMake(0, -playAgainButtonBacking.size.height/5);
     [self addChild:playAgainButtonBacking];
-    
-    
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
