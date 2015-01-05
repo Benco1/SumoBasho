@@ -37,9 +37,6 @@ static NSString *BAD_MESSAGE = @"Ouch! Too much sake last night?";
 
 {
     NSLog(@"latestResult %d",[[GameData sharedData] latestResult]);
-    NSLog(@"totalLosses %d",[[GameData sharedData] totalLosses]);
-    NSLog(@"totalLosses %d",[[GameData sharedData] totalLosses]);
-    NSLog(@"totalMatches %d", [[GameData sharedData] totalMatches]);
     NSLog(@"winHistory %@", [[GameData sharedData] winHistory]);
     
     self.anchorPoint = CGPointMake(0.5, 0.5);

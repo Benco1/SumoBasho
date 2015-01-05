@@ -76,7 +76,6 @@
 +(instancetype)loadInstance
 {
     NSData *decodedData = [NSData dataWithContentsOfFile:[GameData filePath]];
-    NSLog(@"Decoded Data = %@", [GameData filePath]);
     if(decodedData) {
     GameData *sharedData = [NSKeyedUnarchiver unarchiveObjectWithData:decodedData];
     return sharedData;
@@ -101,7 +100,6 @@
     for (NSNumber *num in self.winHistory) {
 
         wins += [num intValue];
-        NSLog(@"%d wins, num %d", wins, [num intValue]);
     }
     return wins;
 }
