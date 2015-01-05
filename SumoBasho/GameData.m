@@ -70,8 +70,7 @@
 {
     self.currentRankTitle = nil;
     self.currentStrength = 0;
-    self.winHistory = nil;
-
+    self.winHistory = [[NSMutableArray alloc] init];
 }
 
 +(instancetype)loadInstance
@@ -87,19 +86,19 @@
 
 -(int)latestResult
 {
-    return [[winHistory lastObject] intValue];
+    return [[[self winHistory] lastObject] intValue];
 }
 
 -(int)totalMatches
 {
-    return (int)[winHistory count];
+    return (int)[[self winHistory] count] * 15;
 }
 
 -(int)totalWins
 {
-    int wins;
+    int wins = 0;
 
-    for (NSNumber *num in winHistory) {
+    for (NSNumber *num in self.winHistory) {
 
         wins += [num intValue];
         NSLog(@"%d wins, num %d", wins, [num intValue]);

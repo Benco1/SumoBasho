@@ -10,8 +10,8 @@
 
 @interface GameData : NSObject <NSCoding>
 
-@property (nonatomic) NSString *currentRankTitle;
 @property (assign, nonatomic) int currentStrength;
+@property (nonatomic) NSString *currentRankTitle;
 @property (nonatomic) NSMutableArray *winHistory;
 
 + (instancetype)sharedData;

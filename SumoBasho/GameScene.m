@@ -97,7 +97,7 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
     [self addChild:_ring];
     
     // Setup data defaults
-    [[GameData sharedData] reset];
+//    [[GameData sharedData] reset];
     
     if ([[GameData sharedData] totalMatches] == 0) {
         
@@ -275,9 +275,6 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
 -(void)gameOver
 {
     //    [[GameData sharedData] save];
-    //    NSLog(@"%d W, %d L, %d Matches", [[GameData sharedData] totalWins],
-    //    [[GameData sharedData] totalLosses],
-    //    [[GameData sharedData] totalMatches]);
     
     // Game over label
     SKLabelNode *gameOverLabel = [SKLabelNode labelNodeWithFontNamed:GAME_FONT];
