@@ -9,6 +9,7 @@
 #import "ResultsScene.h"
 #import "GameScene.h"
 #import "GameData.h"
+#import "RankManager.h"
 
 @interface ResultsScene ()
 
@@ -53,6 +54,22 @@ static NSString *BAD_MESSAGE = @"Ouch! Too much sake last night?";
     } else if (latestResult <= 7) {
         commentary = BAD_MESSAGE;
     }
+    
+    RankManager *rankManager = [RankManager rankManagerWithWinHistory:[[GameData sharedData] winHistory]
+                                                          currentRank:[[GameData sharedData] currentRankTitle]];
+    
+    NSLog(@"New rank title: %@", rankManager.outputRankTitle);
+    
+    [GameData sharedData].currentRankTitle = rankManager.outputRankTitle;
+    
+    // NSString *previousRankTitle = [GameData sharedData].currentRankTitle copy];
+    // [GameData sharedData].currentRankTitle = [rank determineNewRank];
+    // NSString *newRankMessage;
+    // if ([rank determineNewRank] isNotEqual: previousRankTitle && BOOL TRUE) {
+    //      newRankMessage = @"Congratulations! Moving on up!
+    // } else {
+    //      newRankMessage = @"Don't get discouraged. You've got talent, kid!
+    // }
     
     SKLabelNode *messageLabel = [SKLabelNode labelNodeWithText:
                                  [NSString stringWithFormat:@"%d wins out of 15. %@",[GameData sharedData].latestResult, commentary]];

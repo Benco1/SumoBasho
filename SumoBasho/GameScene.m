@@ -298,7 +298,9 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
         
     } else if (totalPoints >= 2) {
         
-        [[[GameData sharedData] winHistory] addObject:[NSNumber numberWithInt:self.heroPoints]];
+//        [[[GameData sharedData] winHistory] addObject:[NSNumber numberWithInt:self.heroPoints]];
+        [[[GameData sharedData] winHistory] addObject:[NSNumber numberWithInt:10]]; //              **CHANGE THIS**
+
         [[GameData sharedData] save];
         
         SKScene *resultsScene  = [[ResultsScene alloc] initWithSize:self.size];
