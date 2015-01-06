@@ -13,6 +13,7 @@
 
 @synthesize outputRank;
 
+// Assign new rank level and title and output as single-entry value/key NSDictionary
 +(id)rankManager:(NSMutableArray *)winHistory currentRankTitle:(NSString *)inputTitle currentRankLevel:(int)inputLevel
 {
     RankManager *rankManager = [RankManager new];
@@ -149,5 +150,6 @@
     
     return fate;
 }
+
 
 @end
