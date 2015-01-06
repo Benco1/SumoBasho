@@ -11,7 +11,7 @@
 @interface GameData : NSObject <NSCoding>
 
 @property (assign, nonatomic) int currentStrength;
-@property (nonatomic) NSString *currentRankTitle;
+@property (nonatomic) NSDictionary *currentRank;
 @property (nonatomic) NSMutableArray *winHistory;
 
 + (instancetype)sharedData;
@@ -21,5 +21,7 @@
 - (int)totalMatches;
 - (int)totalWins;
 - (int)totalLosses;
+-(NSString *)currentRankTitle;
+-(int)currentRankValue;
 
 @end

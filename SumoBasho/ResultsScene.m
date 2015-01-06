@@ -37,9 +37,6 @@ static NSString *BAD_MESSAGE = @"Ouch! Too much sake last night?";
 - (void)createSceneContents
 
 {
-    NSLog(@"latestResult %d",[[GameData sharedData] latestResult]);
-    NSLog(@"winHistory %@", [[GameData sharedData] winHistory]);
-    
     self.anchorPoint = CGPointMake(0.5, 0.5);
     self.backgroundColor = [SKColor blackColor];
     self.scaleMode = SKSceneScaleModeAspectFit;
@@ -55,12 +52,14 @@ static NSString *BAD_MESSAGE = @"Ouch! Too much sake last night?";
         commentary = BAD_MESSAGE;
     }
     
-    RankManager *rankManager = [RankManager rankManagerWithWinHistory:[[GameData sharedData] winHistory]
-                                                          currentRank:[[GameData sharedData] currentRankTitle]];
+    RankManager *rankManager = [RankManager rankManager:[[GameData sharedData] winHistory]
+                                       currentRankTitle:[[GameData sharedData] currentRankTitle]
+                                       currentRankValue:[[GameData sharedData] currentRankValue]];
     
-    NSLog(@"New rank title: %@", rankManager.outputRankTitle);
+    // Assing new currentRank (NSDictionary) to GameData
+    [GameData sharedData].currentRank = rankManager.outputRank;
     
-    [GameData sharedData].currentRankTitle = rankManager.outputRankTitle;
+    NSLog(@"New rank title: %@", rankManager.outputRank);
     
     // NSString *previousRankTitle = [GameData sharedData].currentRankTitle copy];
     // [GameData sharedData].currentRankTitle = [rank determineNewRank];
@@ -72,7 +71,7 @@ static NSString *BAD_MESSAGE = @"Ouch! Too much sake last night?";
     // }
     
     SKLabelNode *messageLabel = [SKLabelNode labelNodeWithText:
-                                 [NSString stringWithFormat:@"%d wins out of 15. %@",[GameData sharedData].latestResult, commentary]];
+                                 [NSString stringWithFormat:@"%d wins out of 15. %@",[[GameData sharedData] latestResult], commentary]];
     messageLabel.position = CGPointMake(self.anchorPoint.x, self.anchorPoint.y);
     messageLabel.fontColor = [UIColor whiteColor];
     messageLabel.fontSize = 20;
@@ -80,7 +79,7 @@ static NSString *BAD_MESSAGE = @"Ouch! Too much sake last night?";
     [self addChild:messageLabel];
     
     SKLabelNode *rankLabel = [SKLabelNode labelNodeWithText:
-                              [NSString stringWithFormat:@"Rank: %@", [GameData sharedData].currentRankTitle]];
+                              [NSString stringWithFormat:@"Rank: %@", [[GameData sharedData] currentRankTitle]]];
     rankLabel.position = CGPointMake(self.anchorPoint.x, self.anchorPoint.y - 50);
     rankLabel.fontColor = [UIColor whiteColor];
     rankLabel.fontSize = 20;

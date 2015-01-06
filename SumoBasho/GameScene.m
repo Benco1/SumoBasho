@@ -98,10 +98,10 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
     
     // Setup data defaults
 //    [[GameData sharedData] reset];
-    
+
     if ([[GameData sharedData] totalMatches] == 0) {
         
-        [GameData sharedData].currentRankTitle = @"Maegashira 16";
+        [[GameData sharedData] reset];
         [GameData sharedData].currentStrength = 50;
     }
     
@@ -110,6 +110,10 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
 
 -(void)newGame
 {
+    NSLog(@"winHistory %@", [[GameData sharedData] winHistory]);
+    NSLog(@"current Title %@", [[GameData sharedData] currentRankTitle]);
+    NSLog(@"current Rank Value %d", [[GameData sharedData] currentRankValue]);
+    
     [_mainLayer removeAllChildren];
     
     SKLabelNode *tapToBeginLabel = [SKLabelNode labelNodeWithFontNamed:GAME_FONT];

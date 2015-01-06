@@ -17,7 +17,7 @@
 
 @implementation GameData
 
-@synthesize currentRankTitle;
+@synthesize currentRank;
 @synthesize currentStrength;
 @synthesize winHistory;
 
@@ -45,7 +45,7 @@
 
 -(void) encodeWithCoder:(NSCoder*)encoder {
 
-    [encoder encodeObject:self.currentRankTitle forKey:@"currentRankTitle"];
+    [encoder encodeObject:self.currentRank forKey:@"currentRank"];
     [encoder encodeInt:self.currentStrength forKey:@"currentStrength"];
     [encoder encodeObject:self.winHistory forKey:@"winHistory"];
 }
@@ -53,7 +53,7 @@
 -(instancetype) initWithCoder:(NSCoder*)decoder {
     self = [self init];
     if (self) {
-        self.currentRankTitle = [decoder decodeObjectForKey:@"currentRankTitle"];
+        self.currentRank = [decoder decodeObjectForKey:@"currentRank"];
         self.currentStrength = [decoder decodeIntForKey:@"currentStrength"];
         self.winHistory = [decoder decodeObjectForKey:@"winHistory"];
     }
@@ -68,7 +68,7 @@
 
 -(void)reset
 {
-    self.currentRankTitle = nil;
+    self.currentRank = @{@"Maegashira 16" : [NSNumber numberWithInt:1]};
     self.currentStrength = 0;
     self.winHistory = [[NSMutableArray alloc] init];
 }
@@ -81,6 +81,16 @@
     return sharedData;
     }
     return [GameData new];
+}
+
+-(NSString *)currentRankTitle
+{
+    return [[self.currentRank allKeys] objectAtIndex:0];
+}
+
+-(int)currentRankValue
+{
+    return [[[self.currentRank allValues] objectAtIndex:0] intValue];
 }
 
 -(int)latestResult

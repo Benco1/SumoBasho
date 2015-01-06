@@ -10,8 +10,9 @@
 
 @interface RankManager : NSObject
 
-@property (nonatomic) NSString *outputRankTitle;
+@property (nonatomic) NSDictionary *outputRank;
 
-+(id)rankManagerWithWinHistory:(NSMutableArray *)winHistory currentRank:(NSString *)inputRankTitle;
+
++(id)rankManager:(NSMutableArray *)winHistory currentRankTitle:(NSString *)inputTitle currentRankValue:(int)inputValue;
 
 @end
