@@ -22,6 +22,6 @@
 - (int)totalWins;
 - (int)totalLosses;
 -(NSString *)currentRankTitle;
--(int)currentRankValue;
+-(int)currentRankLevel;
 
 @end

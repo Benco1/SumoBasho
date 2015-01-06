@@ -54,7 +54,7 @@ static NSString *BAD_MESSAGE = @"Ouch! Too much sake last night?";
     
     RankManager *rankManager = [RankManager rankManager:[[GameData sharedData] winHistory]
                                        currentRankTitle:[[GameData sharedData] currentRankTitle]
-                                       currentRankValue:[[GameData sharedData] currentRankValue]];
+                                       currentRankLevel:[[GameData sharedData] currentRankLevel]];
     
     // Assing new currentRank (NSDictionary) to GameData
     [GameData sharedData].currentRank = rankManager.outputRank;

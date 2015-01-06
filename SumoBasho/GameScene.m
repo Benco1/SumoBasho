@@ -112,7 +112,7 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
 {
     NSLog(@"winHistory %@", [[GameData sharedData] winHistory]);
     NSLog(@"current Title %@", [[GameData sharedData] currentRankTitle]);
-    NSLog(@"current Rank Value %d", [[GameData sharedData] currentRankValue]);
+    NSLog(@"current Rank Level %d", [[GameData sharedData] currentRankLevel]);
     
     [_mainLayer removeAllChildren];
     
@@ -289,7 +289,7 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
     
     CGFloat totalPoints = self.heroPoints + self.opponentPoints;
     
-    if (totalPoints < 2) {
+    if (totalPoints < 15) {
         
         [_mainLayer removeAllActions];
         
@@ -300,10 +300,10 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
         [self addChild:tapToResetLabel];
         [self animateWithPulse:tapToResetLabel];
         
-    } else if (totalPoints >= 2) {
+    } else if (totalPoints >= 15) {
         
-//        [[[GameData sharedData] winHistory] addObject:[NSNumber numberWithInt:self.heroPoints]];
-        [[[GameData sharedData] winHistory] addObject:[NSNumber numberWithInt:10]]; //              **CHANGE THIS**
+        [[[GameData sharedData] winHistory] addObject:[NSNumber numberWithInt:self.heroPoints]];
+//        [[[GameData sharedData] winHistory] addObject:[NSNumber numberWithInt:13]]; //              **CHANGE THIS**
 
         [[GameData sharedData] save];
         

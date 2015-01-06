@@ -68,7 +68,7 @@
 
 -(void)reset
 {
-    self.currentRank = @{@"Maegashira 16" : [NSNumber numberWithInt:1]};
+    self.currentRank = @{ @"1" : @"Maegashira 16" };
     self.currentStrength = 0;
     self.winHistory = [[NSMutableArray alloc] init];
 }
@@ -85,12 +85,12 @@
 
 -(NSString *)currentRankTitle
 {
-    return [[self.currentRank allKeys] objectAtIndex:0];
+    return [[self.currentRank allValues] objectAtIndex:0];
 }
 
--(int)currentRankValue
+-(int)currentRankLevel
 {
-    return [[[self.currentRank allValues] objectAtIndex:0] intValue];
+    return [[[self.currentRank allKeys] objectAtIndex:0] intValue];
 }
 
 -(int)latestResult
