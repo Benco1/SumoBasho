@@ -29,8 +29,9 @@
     NSMutableDictionary *_opponentPool;
 }
 
-CGFloat static const STRENGTH_BASE = 5.0;
-CGFloat static const STRENGTH_MAX = 80;
+CGFloat static const STRENGTH_BASE = 20.0;
+CGFloat static const HERO_STRENGTH_DILUTION = 0.5;
+CGFloat static const STRENGTH_MAX = 100;
 
 static NSString *GAME_FONT = @"AmericanTypewriter-Bold";
 
@@ -96,8 +97,6 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
     
     _opponentPool = [OpponentGenerator opponentPool];
     
-    //    _currentPointsTotal = 0;
-
     if ([[GameData sharedData] totalMatches] == 0) {
         
         [[GameData sharedData] reset];
@@ -142,7 +141,7 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
     // Add user-controlled hero
     _hero = [Hero spriteNodeWithImageNamed:@"SumoSpriteTEST"];
     _hero.name = @"Hero";
-    _hero.strength = [self calculateStrength:[[GameData sharedData] currentRankLevel]];
+    _hero.strength = [self calculateStrength:[[GameData sharedData] currentRankLevel]] * HERO_STRENGTH_DILUTION;
     _hero.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:_hero.size];
     _hero.position = CGPointMake(0, 45);
     _hero.physicsBody.mass = 200;
