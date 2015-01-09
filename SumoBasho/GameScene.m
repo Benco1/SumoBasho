@@ -29,7 +29,7 @@
     NSMutableDictionary *_opponentPool;
 }
 
-CGFloat static const STRENGTH_BASE = 0.5;
+CGFloat static const STRENGTH_BASE = 5.0;
 CGFloat static const STRENGTH_MAX = 80;
 
 static NSString *GAME_FONT = @"AmericanTypewriter-Bold";
