@@ -12,7 +12,7 @@
 
 @property (nonatomic) NSDictionary *outputRank;
 
-
 +(id)rankManager:(NSMutableArray *)winHistory currentRankTitle:(NSString *)inputTitle currentRankLevel:(int)inputLevel;
++(NSDictionary *)sumoRanks;
 
 @end

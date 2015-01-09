@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5430394A1A5F968A0078BC80 /* OpponentGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 543039491A5F968A0078BC80 /* OpponentGenerator.m */; };
 		5499A7C21A5A466000319F76 /* RankManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5499A7C11A5A466000319F76 /* RankManager.m */; };
 		549B3A681A59E34000EBE388 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 549B3A671A59E34000EBE388 /* main.m */; };
 		549B3A6B1A59E34000EBE388 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 549B3A6A1A59E34000EBE388 /* AppDelegate.m */; };
@@ -35,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		543039481A5F968A0078BC80 /* OpponentGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpponentGenerator.h; path = ../OpponentGenerator.h; sourceTree = "<group>"; };
+		543039491A5F968A0078BC80 /* OpponentGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OpponentGenerator.m; path = ../OpponentGenerator.m; sourceTree = "<group>"; };
 		5499A7C01A5A466000319F76 /* RankManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RankManager.h; sourceTree = "<group>"; };
 		5499A7C11A5A466000319F76 /* RankManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RankManager.m; sourceTree = "<group>"; };
 		549B3A621A59E34000EBE388 /* SumoBasho.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SumoBasho.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,6 +107,8 @@
 			children = (
 				549B3A691A59E34000EBE388 /* AppDelegate.h */,
 				549B3A901A59F65A00EBE388 /* SumoSpriteTEST@2x.png */,
+				543039481A5F968A0078BC80 /* OpponentGenerator.h */,
+				543039491A5F968A0078BC80 /* OpponentGenerator.m */,
 				549B3A951A59F71A00EBE388 /* GameData.h */,
 				549B3A961A59F71A00EBE388 /* GameData.m */,
 				5499A7C01A5A466000319F76 /* RankManager.h */,
@@ -263,6 +268,7 @@
 				549B3A9C1A59F7E200EBE388 /* ResultsScene.m in Sources */,
 				549B3A6E1A59E34000EBE388 /* GameScene.m in Sources */,
 				549B3A681A59E34000EBE388 /* main.m in Sources */,
+				5430394A1A5F968A0078BC80 /* OpponentGenerator.m in Sources */,
 				5499A7C21A5A466000319F76 /* RankManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

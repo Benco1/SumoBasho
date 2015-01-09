@@ -98,6 +98,7 @@ static NSString *BAD_MESSAGE = @"Ouch! Too much sake last night?";
     [self addChild:recordLabel];
     
     SKLabelNode *playAgainButtonText = [SKLabelNode labelNodeWithText:@"Play Again"];
+    playAgainButtonText.name = @"playAgainButton";
     playAgainButtonText.fontColor = [UIColor whiteColor];
     playAgainButtonText.fontSize = 20;
     playAgainButtonText.fontName = GAME_FONT;
@@ -105,11 +106,26 @@ static NSString *BAD_MESSAGE = @"Ouch! Too much sake last night?";
     SKSpriteNode *playAgainButtonBacking = [SKSpriteNode
                                             spriteNodeWithColor:[UIColor blueColor]
                                             size:CGSizeMake(self.size.width/4, self.size.height/9)];
-    playAgainButtonBacking.name = @"playAgainButtonBackground";
+    playAgainButtonBacking.name = @"playAgainButton";
     playAgainButtonBacking.position = CGPointMake(0, -self.size.height/3);
     [playAgainButtonBacking addChild:playAgainButtonText];
     playAgainButtonText.position = CGPointMake(0, -playAgainButtonBacking.size.height/5);
     [self addChild:playAgainButtonBacking];
+    
+    SKLabelNode *resetButtonText = [SKLabelNode labelNodeWithText:@"reset stats"];
+    resetButtonText.name = @"resetButton";
+    resetButtonText.fontColor = [UIColor whiteColor];
+    resetButtonText.fontSize = 15;
+    resetButtonText.fontName = GAME_FONT;
+    
+    SKSpriteNode *resetButtonBacking = [SKSpriteNode
+                                            spriteNodeWithColor:[UIColor redColor]
+                                            size:CGSizeMake(self.size.width/7, self.size.width/20)];
+    resetButtonBacking.name = @"resetButton";
+    resetButtonBacking.position = CGPointMake(0.8 * -self.size.width/2, 0.85 * -self.size.height/2);
+    [resetButtonBacking addChild:resetButtonText];
+    resetButtonText.position = CGPointMake(0, -resetButtonBacking.size.height/5);
+    [self addChild:resetButtonBacking];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -118,8 +134,13 @@ static NSString *BAD_MESSAGE = @"Ouch! Too much sake last night?";
     CGPoint location = [touch locationInNode:self];
     SKNode *node = [self nodeAtPoint:location];
         
-    if ([node.name isEqualToString:@"playAgainButtonBackground"]) {
+    if ([node.name isEqualToString:@"playAgainButton"]) {
         [self newGameScene];
+    }
+    
+    if ([node.name isEqualToString:@"resetButton"]) {
+        [[GameData sharedData] reset];
+        [[GameData sharedData] save];
     }
 }
 

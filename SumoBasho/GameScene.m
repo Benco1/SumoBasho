@@ -10,24 +10,27 @@
 #import "ResultsScene.h"
 #import "Hero.h"
 #import "GameData.h"
+#import "RankManager.h"
+#import "OpponentGenerator.h"
 
 @implementation GameScene
 {
     Hero *_hero;
     Hero *_opponent;
+    int _currentPointsTotal;
     BOOL _didChargeOpponent;
     BOOL _isStarted;
     BOOL _isGameOver;
     SKNode *_mainLayer;
     CGPoint _touchLocation;
     SKShapeNode *_ring;
-    SKSpriteNode *_ground;
     SKLabelNode *_heroPointsLabel;
     SKLabelNode *_opponentPointsLabel;
+    NSMutableDictionary *_opponentPool;
 }
 
-CGFloat static const HERO_STRENGTH = 20;
-CGFloat static const OPPONENT_STRENGTH = 60;
+CGFloat static const STRENGTH_BASE = 0.5;
+CGFloat static const STRENGTH_MAX = 80;
 
 static NSString *GAME_FONT = @"AmericanTypewriter-Bold";
 
@@ -57,33 +60,28 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
     self.anchorPoint = CGPointMake(0.5, 0.5);
     self.physicsWorld.contactDelegate = self;
     self.physicsWorld.gravity = CGVectorMake(0.0, 0.0);
-    //self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
     
-    // Add mainlayer
+    // Add MAINLAYER
     _mainLayer = [[SKNode alloc] init];
     [self addChild:_mainLayer];
-    
-    _ground = [SKSpriteNode spriteNodeWithColor:[UIColor lightGrayColor] size:CGSizeMake(self.size.width, self.size.width)];
-    _ground.position = self.anchorPoint;
-    [_mainLayer addChild:_ground];
-    
-    // Add points labels
+
+    // Add HERO POINTS labels
     _heroPointsLabel = [SKLabelNode labelNodeWithFontNamed:GAME_FONT];
-    _heroPointsLabel.position = CGPointMake(0.9 * -self.size.width/2, 0.9 * self.size.height/2);
+    _heroPointsLabel.position = CGPointMake(0.95 * -self.size.width/2, 0.85 * self.size.height/2);
     _heroPointsLabel.fontSize = 20.0;
     _heroPointsLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
     _heroPointsLabel.text = @"HERO: 0";
     [self addChild:_heroPointsLabel];
     
-    // Add points labels
+    // Add OPPONENT POINTS labels
     _opponentPointsLabel = [SKLabelNode labelNodeWithFontNamed:GAME_FONT];
-    _opponentPointsLabel.position = CGPointMake(0.9 * self.size.width/2, 0.9 * self.size.height/2);
+    _opponentPointsLabel.position = CGPointMake(0.95 * self.size.width/2, 0.85 * self.size.height/2);
     _opponentPointsLabel.fontSize = 20.0;
     _opponentPointsLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
     _opponentPointsLabel.text = @"CPU: 0";
     [self addChild:_opponentPointsLabel];
     
-    // Add ring boundary
+    // Add RING BOUNDARY
     CGMutablePathRef circlePath = CGPathCreateMutable();
     CGPathAddArc(circlePath, NULL, 0, 0, 0.9 * self.size.height/2, 0, M_PI * 2, YES);
     _ring = [SKShapeNode shapeNodeWithPath:circlePath];
@@ -96,13 +94,13 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
     _ring.physicsBody.dynamic = NO;
     [self addChild:_ring];
     
-    // Setup data defaults
-//    [[GameData sharedData] reset];
+    _opponentPool = [OpponentGenerator opponentPool];
+    
+    //    _currentPointsTotal = 0;
 
     if ([[GameData sharedData] totalMatches] == 0) {
         
         [[GameData sharedData] reset];
-        [GameData sharedData].currentStrength = 50;
     }
     
     [self newGame];
@@ -110,11 +108,13 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
 
 -(void)newGame
 {
-    NSLog(@"winHistory %@", [[GameData sharedData] winHistory]);
-    NSLog(@"current Title %@", [[GameData sharedData] currentRankTitle]);
-    NSLog(@"current Rank Level %d", [[GameData sharedData] currentRankLevel]);
-    
+
     [_mainLayer removeAllChildren];
+    
+    // (Re-)Apply ring bit mask
+    _ring.physicsBody.categoryBitMask = ringCategory;
+    
+    OpponentGenerator *opponent = [OpponentGenerator opponentFromPool:_opponentPool];
     
     SKLabelNode *tapToBeginLabel = [SKLabelNode labelNodeWithFontNamed:GAME_FONT];
     tapToBeginLabel.name = @"tapToBeginLabel";
@@ -123,13 +123,26 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
     [self addChild:tapToBeginLabel];
     [self animateWithPulse: tapToBeginLabel];
     
-    // (Re-)Apply ring bit mask
-    _ring.physicsBody.categoryBitMask = ringCategory;
+    // Add HERO RANK title label
+    SKLabelNode *heroTitleLabel = [SKLabelNode labelNodeWithFontNamed:GAME_FONT];
+    heroTitleLabel.position = CGPointMake(0.95 * -self.size.width/2, 0.75 * self.size.height/2);
+    heroTitleLabel.fontSize = 15.0;
+    heroTitleLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
+    heroTitleLabel.text = [[GameData sharedData] currentRankTitle];
+    [self addChild:heroTitleLabel];
+    
+    // Add OPPONENT RANK title label
+    SKLabelNode *opponentTitleLabel = [SKLabelNode labelNodeWithFontNamed:GAME_FONT];
+    opponentTitleLabel.position = CGPointMake(0.95 * self.size.width/2, 0.75 * self.size.height/2);
+    opponentTitleLabel.fontSize = 15.0;
+    opponentTitleLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
+    opponentTitleLabel.text = [opponent rankTitle];
+    [self addChild:opponentTitleLabel];
     
     // Add user-controlled hero
-    //_hero = [Hero hero];
     _hero = [Hero spriteNodeWithImageNamed:@"SumoSpriteTEST"];
     _hero.name = @"Hero";
+    _hero.strength = [self calculateStrength:[[GameData sharedData] currentRankLevel]];
     _hero.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:_hero.size];
     _hero.position = CGPointMake(0, 45);
     _hero.physicsBody.mass = 200;
@@ -140,6 +153,7 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
     // Add computer-controlled opponent
     _opponent = [Hero hero];
     _opponent.name = @"Opponent";
+    _opponent.strength = [self calculateStrength:[opponent rankLevel]];
     _opponent.position = CGPointMake(0, -45);
     _opponent.physicsBody.mass = 200;
     _opponent.physicsBody.categoryBitMask = opponentCategory;
@@ -183,7 +197,7 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
     chargeVector.dy = _touchLocation.y - _hero.position.y;
     chargeVector = toUnitVector(chargeVector);
     
-    [_hero runAction:[SKAction moveBy:CGVectorMake(chargeVector.dx * HERO_STRENGTH, chargeVector.dy * HERO_STRENGTH) duration:0.5]];
+ [_hero runAction:[SKAction moveBy:CGVectorMake(chargeVector.dx * _hero.strength, chargeVector.dy * _hero.strength) duration:0.5]];
 }
 
 -(void)chargeHero
@@ -193,10 +207,10 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
     chargeVector.dy = _hero.position.y - _opponent.position.y;
     chargeVector = toUnitVector(chargeVector);
     
-    [self chargeSequence:_opponent chargeVector:chargeVector meanStrength:OPPONENT_STRENGTH variability:0.5];
+    [self chargeSequence:_opponent chargeVector:chargeVector meanStrength:_opponent.strength variability:0.25];
 }
 
-// Experimental charge sequence
+// Experimental charge sequence using a 0.0 - 1.0 variability factor
 -(void)chargeSequence:(SKSpriteNode *)node
          chargeVector:(CGVector)vector
          meanStrength:(CGFloat)meanStrength
@@ -210,6 +224,11 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
                                          [SKAction waitForDuration:0.5],
                                          [SKAction moveBy:CGVectorMake(-vector.dx * meanStrength / 2,
                                                                        -vector.dy * meanStrength / 2) duration:0.1]]]];
+}
+
+-(int)calculateStrength:(int)rankLevel
+{
+    return STRENGTH_BASE + rankLevel * (STRENGTH_MAX - STRENGTH_BASE) / [[RankManager sumoRanks] count];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -243,7 +262,6 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
     if (firstBody.categoryBitMask == ringCategory && secondBody.categoryBitMask == heroCategory) {
         
         // Opponent wins :(
-        _isGameOver = TRUE;
         self.opponentPoints++;
         self.matchWinner = _opponent.name;
         _opponentPointsLabel.text = [NSString stringWithFormat:@"OPP: %d", self.opponentPoints];
@@ -253,7 +271,6 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
     if (firstBody.categoryBitMask == ringCategory && secondBody.categoryBitMask == opponentCategory) {
         
         // Hero wins :)
-        _isGameOver = TRUE;
         self.heroPoints++;
         self.matchWinner = _hero.name;
         _heroPointsLabel.text = [NSString stringWithFormat:@"HERO: %d", self.heroPoints];
@@ -278,8 +295,6 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
 
 -(void)gameOver
 {
-    //    [[GameData sharedData] save];
-    
     // Game over label
     SKLabelNode *gameOverLabel = [SKLabelNode labelNodeWithFontNamed:GAME_FONT];
     gameOverLabel.name = @"gameOverLabel";
@@ -287,9 +302,9 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
     gameOverLabel.position = CGPointMake(0, 50);
     [self addChild:gameOverLabel];
     
-    CGFloat totalPoints = self.heroPoints + self.opponentPoints;
+    _currentPointsTotal = self.heroPoints + self.opponentPoints;
     
-    if (totalPoints < 15) {
+    if (_currentPointsTotal < 15) {
         
         [_mainLayer removeAllActions];
         
@@ -300,10 +315,12 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
         [self addChild:tapToResetLabel];
         [self animateWithPulse:tapToResetLabel];
         
-    } else if (totalPoints >= 15) {
+        _isGameOver = TRUE;
         
-        [[[GameData sharedData] winHistory] addObject:[NSNumber numberWithInt:self.heroPoints]];
-//        [[[GameData sharedData] winHistory] addObject:[NSNumber numberWithInt:13]]; //              **CHANGE THIS**
+    } else if (_currentPointsTotal >= 15) {
+        
+//        [[[GameData sharedData] winHistory] addObject:[NSNumber numberWithInt:self.heroPoints]];
+        [[[GameData sharedData] winHistory] addObject:[NSNumber numberWithInt:13]]; //              ** TEST SETTING **
 
         [[GameData sharedData] save];
         

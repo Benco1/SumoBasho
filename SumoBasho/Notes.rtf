@@ -1,6 +1,8 @@
 {\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf160
 {\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
-{\colortbl;\red255\green255\blue255;\red0\green116\blue0;}
+{\colortbl;\red255\green255\blue255;\red0\green116\blue0;\red100\green56\blue32;\red196\green26\blue22;
+\red170\green13\blue145;\red63\green110\blue116;\red92\green38\blue153;\red46\green13\blue110;\red38\green71\blue75;
+\red28\green0\blue207;}
 \margl1440\margr1440\vieww9000\viewh8400\viewkind0
 \deftab529
 \pard\tx529\pardeftab529\pardirnatural
@@ -47,5 +49,87 @@
     \
 \cf2 // SKSpriteNode *marker = [SKSpriteNode spriteNodeWithColor:[UIColor whiteColor] size:CGSizeMake(5, 5)];\cf0 \
 \cf2 // marker.position = opponentRightFront;\cf0 \
-\cf2 // self addChild:marker];\cf0 \
+\cf2 // self addChild:marker];\
+\pard\tx529\pardeftab529\pardirnatural
+\cf3 #import \cf4 "OpponentFactory.h"\cf3 \
+#import \cf4 "RankManager.h"\cf3 \
+\pard\tx529\pardeftab529\pardirnatural
+\cf0 \
+\pard\tx529\pardeftab529\pardirnatural
+\cf5 @interface\cf0  \cf6 OpponentFactory\cf0  ()\
+\cf5 @property\cf0  (\cf5 nonatomic\cf0  ) \cf7 NSMutableDictionary\cf0  *opponentPool;\
+\cf5 @property\cf0  (\cf5 nonatomic\cf0 ) \cf7 NSDictionary\cf0  *opponent;\
+\
+\cf5 @end\cf0 \
+\
+\cf5 @implementation\cf0  OpponentFactory\
+\
+\cf5 @synthesize\cf0  opponentPool;\
+\
++(\cf5 id\cf0 )opponent\
+\{\
+    \cf7 NSDictionary\cf0  *opponent = [\cf7 NSDictionary\cf0  \cf8 new\cf0 ];\
+    \cf7 NSString\cf0  *key = [\cf5 self\cf0  \cf9 randomKey\cf0 ];\
+    \
+    \cf5 if\cf0  ([[\cf5 self\cf0  opponentPool] objectForKey:key]) \{\
+        opponent = \cf10 @\{\cf0  key : [[\cf5 self\cf0  opponentPool] objectForKey:key] \cf10 \}\cf0 ;\
+        [[\cf5 self\cf0  opponentPool] removeObjectForKey:key];\
+    \} \cf5 else\cf0  \{\
+        [\cf5 self\cf0  opponent];\
+    \}\
+    \cf5 return\cf0  opponent;\
+\}\
+\
++(\cf7 NSString\cf0  *)randomKey\
+\{\
+    \cf5 int\cf0  rand = \cf8 arc4random_uniform\cf0 ((\cf5 int\cf0 )[[\cf6 RankManager\cf0  \cf9 sumoRanks\cf0 ] \cf8 count\cf0 ] + \cf10 1\cf0 );\
+    \cf5 return\cf0  [\cf7 NSString\cf0  \cf8 stringWithFormat\cf0 :\cf4 @"%d"\cf0 , (\cf5 int\cf0 )rand];\
+\}\
+\
++(\cf5 void\cf0 )opponentPool\
+\{\
+    \cf5 self\cf0 .opponentPool = [NSMutableDictionary dictionaryWithDictionary:[RankManager sumoRanks]];\
+\}\
+\
+-(\cf5 void\cf0 )level\
+\{\
+    \cf5 self\cf0 .rankLevel = [[[[\cf5 self\cf0  opponent] allKeys] objectAtIndex:\cf10 0\cf0 ] intValue];\
+\}\
+\
+-(\cf5 void\cf0 )title\
+\{\
+    \cf5 self\cf0 .rankTitle = [[[\cf5 self\cf0  opponent] allValues] objectAtIndex:\cf10 0\cf0 ];\
+\}\
+\
+\cf5 @end\cf0 \
+\pard\tx529\pardeftab529\pardirnatural
+\cf2 \
+\
+\pard\tx529\pardeftab529\pardirnatural
+\cf3 #import \cf4 "RankManager.h"\cf3 \
+\pard\tx529\pardeftab529\pardirnatural
+\cf0 \
+\pard\tx529\pardeftab529\pardirnatural
+\cf5 @implementation\cf0  Opponents\
+\
++(\cf5 id\cf0 )list\
+\{\
+    \cf7 NSArray\cf0  *allRankKeys = [[\cf6 RankManager\cf0  \cf9 sumoRanks\cf0 ] \cf8 allKeys\cf0 ];\
+    \cf7 NSArray\cf0  *opponentKeyList = [allRankKeys \cf8 subarrayWithRange\cf0 :\cf8 NSMakeRange\cf0 (\cf10 0\cf0 , \cf10 15\cf0 )];\
+    \cf5 return\cf0  opponentKeyList;\
+\}\
+\
+-(\cf5 int\cf0 )currentOpponentLevel:(\cf5 int\cf0 )pointsTotal\
+\{\
+    \cf7 NSString\cf0  *currentOpponentKey = [\cf5 self\cf0  objectAtIndex: pointsTotal];\
+    \cf5 int\cf0  currentOpponentLevel = [currentOpponentKey \cf8 intValue\cf0 ];\
+    \cf5 return\cf0  currentOpponentLevel;\
+\}\
+\
+-(\cf7 NSString\cf0  *)currentOpponentTitle:(\cf5 int\cf0 )pointsTotal\
+\{\
+    \cf7 NSString\cf0  *currentOpponentKey = [\cf5 self\cf0  objectAtIndex: pointsTotal];\
+    \cf7 NSString\cf0  *currentOpponentTitle = [[\cf6 RankManager\cf0  \cf9 sumoRanks\cf0 ] \cf8 objectForKey\cf0 :currentOpponentKey];\
+    \cf5 return\cf0  currentOpponentTitle;\
+\}\
 }

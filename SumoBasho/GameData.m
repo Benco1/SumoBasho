@@ -46,7 +46,6 @@
 -(void) encodeWithCoder:(NSCoder*)encoder {
 
     [encoder encodeObject:self.currentRank forKey:@"currentRank"];
-    [encoder encodeInt:self.currentStrength forKey:@"currentStrength"];
     [encoder encodeObject:self.winHistory forKey:@"winHistory"];
 }
 
@@ -54,7 +53,6 @@
     self = [self init];
     if (self) {
         self.currentRank = [decoder decodeObjectForKey:@"currentRank"];
-        self.currentStrength = [decoder decodeIntForKey:@"currentStrength"];
         self.winHistory = [decoder decodeObjectForKey:@"winHistory"];
     }
     return self;

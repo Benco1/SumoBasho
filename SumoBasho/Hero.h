@@ -10,7 +10,7 @@
 
 @interface Hero : SKSpriteNode
 
-@property NSString *rank;
+@property int strength;
 
 + (id)hero;
 
