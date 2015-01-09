@@ -129,7 +129,7 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
     heroTitleLabel.fontSize = 15.0;
     heroTitleLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
     heroTitleLabel.text = [[GameData sharedData] currentRankTitle];
-    [self addChild:heroTitleLabel];
+    [_mainLayer addChild:heroTitleLabel];
     
     // Add OPPONENT RANK title label
     SKLabelNode *opponentTitleLabel = [SKLabelNode labelNodeWithFontNamed:GAME_FONT];
@@ -137,7 +137,7 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
     opponentTitleLabel.fontSize = 15.0;
     opponentTitleLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
     opponentTitleLabel.text = [opponent rankTitle];
-    [self addChild:opponentTitleLabel];
+    [_mainLayer addChild:opponentTitleLabel];
     
     // Add user-controlled hero
     _hero = [Hero spriteNodeWithImageNamed:@"SumoSpriteTEST"];
