@@ -12,6 +12,6 @@
 
 @property int strength;
 
-+ (id)hero;
++ (id)heroWithImage:(NSString *)imageString name:(NSString *)name position:(CGPoint)position;
 
 @end

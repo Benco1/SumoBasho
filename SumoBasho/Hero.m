@@ -10,17 +10,19 @@
 
 @implementation Hero
 
-+ (id)hero
++ (id)heroWithImage:(NSString *)imageString name:(NSString *)name position:(CGPoint)position
 {
-    CGFloat static const HERO_LENGTH = 50.0;
-    
-    Hero *hero = [Hero spriteNodeWithColor:[UIColor brownColor] size:CGSizeMake(HERO_LENGTH, HERO_LENGTH)];
+    Hero *hero = [Hero spriteNodeWithImageNamed:imageString];
     hero.anchorPoint = CGPointMake(0.5, 0.5);
-    hero.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:hero.size center:CGPointMake(0, 0)];
-    hero.physicsBody.density = 1.0;
-    hero.physicsBody.friction = 1.0;
-    hero.physicsBody.linearDamping = 1.0;
-    hero.physicsBody.angularDamping = 1.0;
+    hero.name = name;
+    hero.position = position;
+    hero.zPosition = 1.0;
+    hero.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(50, 50)];
+    hero.physicsBody.mass = 200;
+    hero.physicsBody.friction = 100;
+    hero.physicsBody.linearDamping = 0.7;
+    hero.physicsBody.angularDamping = 1e6;
+    hero.physicsBody.angularVelocity = 0.1;
     hero.physicsBody.restitution = 0.9;
     
     SKSpriteNode *heroAnchor = [SKSpriteNode spriteNodeWithColor:[UIColor whiteColor] size:CGSizeMake(5, 5)];

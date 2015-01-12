@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		5430394A1A5F968A0078BC80 /* OpponentGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 543039491A5F968A0078BC80 /* OpponentGenerator.m */; };
+		54326BC41A60DFFD000EBA04 /* SumoSprite_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 54326BC31A60DFFD000EBA04 /* SumoSprite_2@2x.png */; };
+		54326BC81A60E161000EBA04 /* SumoSprite_2_Red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 54326BC71A60E161000EBA04 /* SumoSprite_2_Red@2x.png */; };
+		54326BCC1A617D69000EBA04 /* SumoSprite2.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 54326BCB1A617D69000EBA04 /* SumoSprite2.atlas */; };
+		54326BCE1A61B010000EBA04 /* SumoSprite2_Red.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 54326BCD1A61B010000EBA04 /* SumoSprite2_Red.atlas */; };
+		54326BD81A6232F0000EBA04 /* ClayBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 54326BD71A6232F0000EBA04 /* ClayBackground.png */; };
+		54326BDC1A62413E000EBA04 /* Ring@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 54326BDB1A62413E000EBA04 /* Ring@2x.png */; };
+		54326BDF1A632D01000EBA04 /* GameLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 54326BDE1A632D01000EBA04 /* GameLabel.m */; };
 		5499A7C21A5A466000319F76 /* RankManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5499A7C11A5A466000319F76 /* RankManager.m */; };
 		549B3A681A59E34000EBE388 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 549B3A671A59E34000EBE388 /* main.m */; };
 		549B3A6B1A59E34000EBE388 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 549B3A6A1A59E34000EBE388 /* AppDelegate.m */; };
@@ -18,7 +25,6 @@
 		549B3A781A59E34000EBE388 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 549B3A771A59E34000EBE388 /* Images.xcassets */; };
 		549B3A7B1A59E34000EBE388 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 549B3A791A59E34000EBE388 /* LaunchScreen.xib */; };
 		549B3A871A59E34000EBE388 /* SumoBashoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 549B3A861A59E34000EBE388 /* SumoBashoTests.m */; };
-		549B3A911A59F65A00EBE388 /* SumoSpriteTEST@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 549B3A901A59F65A00EBE388 /* SumoSpriteTEST@2x.png */; };
 		549B3A931A59F6DF00EBE388 /* Hero.m in Sources */ = {isa = PBXBuildFile; fileRef = 549B3A921A59F6DF00EBE388 /* Hero.m */; };
 		549B3A971A59F71A00EBE388 /* GameData.m in Sources */ = {isa = PBXBuildFile; fileRef = 549B3A961A59F71A00EBE388 /* GameData.m */; };
 		549B3A991A59F74400EBE388 /* Notes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 549B3A981A59F74400EBE388 /* Notes.rtf */; };
@@ -38,6 +44,14 @@
 /* Begin PBXFileReference section */
 		543039481A5F968A0078BC80 /* OpponentGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpponentGenerator.h; path = ../OpponentGenerator.h; sourceTree = "<group>"; };
 		543039491A5F968A0078BC80 /* OpponentGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OpponentGenerator.m; path = ../OpponentGenerator.m; sourceTree = "<group>"; };
+		54326BC31A60DFFD000EBA04 /* SumoSprite_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SumoSprite_2@2x.png"; sourceTree = "<group>"; };
+		54326BC71A60E161000EBA04 /* SumoSprite_2_Red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SumoSprite_2_Red@2x.png"; sourceTree = "<group>"; };
+		54326BCB1A617D69000EBA04 /* SumoSprite2.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = SumoSprite2.atlas; sourceTree = "<group>"; };
+		54326BCD1A61B010000EBA04 /* SumoSprite2_Red.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = SumoSprite2_Red.atlas; sourceTree = "<group>"; };
+		54326BD71A6232F0000EBA04 /* ClayBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ClayBackground.png; sourceTree = "<group>"; };
+		54326BDB1A62413E000EBA04 /* Ring@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Ring@2x.png"; sourceTree = "<group>"; };
+		54326BDD1A632D01000EBA04 /* GameLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameLabel.h; sourceTree = "<group>"; };
+		54326BDE1A632D01000EBA04 /* GameLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameLabel.m; sourceTree = "<group>"; };
 		5499A7C01A5A466000319F76 /* RankManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RankManager.h; sourceTree = "<group>"; };
 		5499A7C11A5A466000319F76 /* RankManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RankManager.m; sourceTree = "<group>"; };
 		549B3A621A59E34000EBE388 /* SumoBasho.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SumoBasho.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,7 +70,6 @@
 		549B3A801A59E34000EBE388 /* SumoBashoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SumoBashoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		549B3A851A59E34000EBE388 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		549B3A861A59E34000EBE388 /* SumoBashoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SumoBashoTests.m; sourceTree = "<group>"; };
-		549B3A901A59F65A00EBE388 /* SumoSpriteTEST@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SumoSpriteTEST@2x.png"; sourceTree = "<group>"; };
 		549B3A921A59F6DF00EBE388 /* Hero.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Hero.m; sourceTree = "<group>"; };
 		549B3A941A59F6EE00EBE388 /* Hero.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Hero.h; sourceTree = "<group>"; };
 		549B3A951A59F71A00EBE388 /* GameData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameData.h; sourceTree = "<group>"; };
@@ -106,7 +119,12 @@
 			isa = PBXGroup;
 			children = (
 				549B3A691A59E34000EBE388 /* AppDelegate.h */,
-				549B3A901A59F65A00EBE388 /* SumoSpriteTEST@2x.png */,
+				54326BC31A60DFFD000EBA04 /* SumoSprite_2@2x.png */,
+				54326BC71A60E161000EBA04 /* SumoSprite_2_Red@2x.png */,
+				54326BD71A6232F0000EBA04 /* ClayBackground.png */,
+				54326BDB1A62413E000EBA04 /* Ring@2x.png */,
+				54326BCD1A61B010000EBA04 /* SumoSprite2_Red.atlas */,
+				54326BCB1A617D69000EBA04 /* SumoSprite2.atlas */,
 				543039481A5F968A0078BC80 /* OpponentGenerator.h */,
 				543039491A5F968A0078BC80 /* OpponentGenerator.m */,
 				549B3A951A59F71A00EBE388 /* GameData.h */,
@@ -121,6 +139,8 @@
 				549B3A6A1A59E34000EBE388 /* AppDelegate.m */,
 				549B3A6C1A59E34000EBE388 /* GameScene.h */,
 				549B3A6D1A59E34000EBE388 /* GameScene.m */,
+				54326BDD1A632D01000EBA04 /* GameLabel.h */,
+				54326BDE1A632D01000EBA04 /* GameLabel.m */,
 				549B3A6F1A59E34000EBE388 /* GameScene.sks */,
 				549B3A711A59E34000EBE388 /* GameViewController.h */,
 				549B3A721A59E34000EBE388 /* GameViewController.m */,
@@ -238,12 +258,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54326BC41A60DFFD000EBA04 /* SumoSprite_2@2x.png in Resources */,
+				54326BCE1A61B010000EBA04 /* SumoSprite2_Red.atlas in Resources */,
+				54326BCC1A617D69000EBA04 /* SumoSprite2.atlas in Resources */,
+				54326BC81A60E161000EBA04 /* SumoSprite_2_Red@2x.png in Resources */,
 				549B3A7B1A59E34000EBE388 /* LaunchScreen.xib in Resources */,
 				549B3A781A59E34000EBE388 /* Images.xcassets in Resources */,
 				549B3A701A59E34000EBE388 /* GameScene.sks in Resources */,
+				54326BDC1A62413E000EBA04 /* Ring@2x.png in Resources */,
 				549B3A761A59E34000EBE388 /* Main.storyboard in Resources */,
+				54326BD81A6232F0000EBA04 /* ClayBackground.png in Resources */,
 				549B3A991A59F74400EBE388 /* Notes.rtf in Resources */,
-				549B3A911A59F65A00EBE388 /* SumoSpriteTEST@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +292,7 @@
 				549B3A971A59F71A00EBE388 /* GameData.m in Sources */,
 				549B3A9C1A59F7E200EBE388 /* ResultsScene.m in Sources */,
 				549B3A6E1A59E34000EBE388 /* GameScene.m in Sources */,
+				54326BDF1A632D01000EBA04 /* GameLabel.m in Sources */,
 				549B3A681A59E34000EBE388 /* main.m in Sources */,
 				5430394A1A5F968A0078BC80 /* OpponentGenerator.m in Sources */,
 				5499A7C21A5A466000319F76 /* RankManager.m in Sources */,
