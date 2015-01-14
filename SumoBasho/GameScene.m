@@ -445,7 +445,6 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
     /* Called before each frame is rendered */
     
 //    if (_isBoostOn == YES) {
-//        [self flashBoostLabel];
 //        _isBoostOn = NO;
 //    }
 }
