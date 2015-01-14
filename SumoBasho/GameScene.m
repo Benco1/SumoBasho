@@ -23,7 +23,9 @@
     BOOL _isStarted;
     BOOL _isGameOver;
     BOOL _isAnimationA;
+    BOOL _isBoostOn;
     SKNode *_mainLayer;
+    SKSpriteNode *_boostLayer;
     CGPoint _touchLocation;
     SKShapeNode *_ring;
     GameLabel *_heroPointsLabel;
@@ -83,6 +85,12 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
     // Add MAINLAYER
     _mainLayer = [[SKNode alloc] init];
     [self addChild:_mainLayer];
+    
+    // Add BOOSTLAYER
+    _boostLayer = [SKSpriteNode spriteNodeWithColor:0 size:CGSizeMake(self.size.width * 0.8, self.size.height * 0.7)];
+    _boostLayer.position = CGPointMake(0, -self.size.height/20);
+    _boostLayer.zPosition = 1;
+    [self addChild:_boostLayer];
 
     // Add HERO POINTS labels
     _heroPointsLabel = [GameLabel gameLabelWithFontSize:20.0];
@@ -111,6 +119,9 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
     _ring.physicsBody.contactTestBitMask = heroCategory | opponentCategory;
     _ring.physicsBody.dynamic = NO;
     [self addChild:_ring];
+    
+    // Run randomized boost label flash sequence
+    [self flashBoostLabel];
     
     // Generate full pool of opponents' rank levels and titles
     _opponentPool = [OpponentGenerator opponentPool];
@@ -273,6 +284,47 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
     [self chargeSequence:_opponent chargeVector:chargeVector meanStrength:_opponent.strength variability:0.25];
 }
 
+-(void)flashBoostLabel
+{
+    SKLabelNode *boostButtonText = [SKLabelNode labelNodeWithText:@"Boost!"];
+    boostButtonText.name = @"boostButton";
+    boostButtonText.fontColor = [UIColor whiteColor];
+    boostButtonText.fontSize = 15;
+    boostButtonText.fontName = GAME_FONT;
+    
+    SKSpriteNode *boostButtonBacking = [SKSpriteNode
+                                        spriteNodeWithColor:[UIColor orangeColor]
+                                        size:CGSizeMake(self.size.width/7, self.size.width/20)];
+    boostButtonBacking.name = @"boostButton";
+    [boostButtonBacking addChild:boostButtonText];
+    boostButtonText.position = CGPointMake(0, -boostButtonBacking.size.height/5);
+    
+
+    SKAction *waitLong = [SKAction waitForDuration:10.0 withRange:1.0];
+    SKAction *position = [SKAction runBlock:^{
+        CGFloat randomX = randomInRange(-_boostLayer.size.width/2, _boostLayer.size.width/2);
+        CGFloat randomY = randomInRange(-_boostLayer.size.height/2, _boostLayer.size.height/2);
+        
+        boostButtonBacking.position = CGPointMake(randomX, randomY);
+    }];
+    SKAction *add = [SKAction runBlock:^{
+        [_boostLayer addChild:boostButtonBacking];
+    }];
+    SKAction *appear = [SKAction runBlock:^{
+        [boostButtonBacking runAction:[SKAction fadeAlphaTo:1.0 duration:1.0]];
+    }];
+    SKAction *waitShort = [SKAction waitForDuration:1.0];
+    SKAction *disappear = [SKAction runBlock:^{
+        [boostButtonBacking runAction:[SKAction fadeAlphaTo:0.0 duration:1.0]];
+    }];
+    SKAction *remove = [SKAction runBlock:^{
+        [boostButtonBacking removeFromParent];
+    }];
+    
+    SKAction *boostButtonSequence = [SKAction sequence:@[waitLong, position, add, appear, waitShort, disappear, remove]];
+    [self runAction:[SKAction repeatActionForever:boostButtonSequence]];
+}
+
 -(int)calculateStrength:(int)rankLevel
 {
     return STRENGTH_BASE + rankLevel * (STRENGTH_MAX - STRENGTH_BASE) / [[RankManager sumoRanks] count];
@@ -391,6 +443,12 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
 
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
+    
+    if (_isBoostOn == YES) {
+        [self flashBoostLabel];
+        _isBoostOn = NO;
+    }
+    
     
 }
 
