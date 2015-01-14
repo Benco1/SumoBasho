@@ -10,7 +10,7 @@
 
 @interface Hero : SKSpriteNode
 
-@property int strength;
+@property CGFloat strength;
 
 + (id)heroWithImage:(NSString *)imageString name:(NSString *)name position:(CGPoint)position;
 

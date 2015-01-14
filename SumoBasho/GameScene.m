@@ -34,7 +34,7 @@
 }
 
 CGFloat static const STRENGTH_BASE = 20.0;
-CGFloat static const HERO_STRENGTH_DILUTION = 1.0; // 1 = no dilution, 0 = full dilution = 0 strength
+CGFloat static const HERO_STRENGTH_DILUTION = 0.5; // 1 = no dilution, 0 = full dilution = 0 strength
 CGFloat static const STRENGTH_MAX = 50;
 
 static NSString *GAME_FONT = @"AmericanTypewriter-Bold";
@@ -284,6 +284,24 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
     [self chargeSequence:_opponent chargeVector:chargeVector meanStrength:_opponent.strength variability:0.25];
 }
 
+-(void)boostHeroStrengthBy:(CGFloat)boostFactor forDuration:(CGFloat)duration
+{
+    CGFloat normalStrength = _hero.strength;
+    
+    SKAction *boost = [SKAction runBlock:^{
+        _hero.strength = normalStrength + boostFactor;
+    }];
+    SKAction *wait = [SKAction waitForDuration:duration];
+    SKAction *reset = [SKAction runBlock:^{
+        _hero.strength = normalStrength;
+    }];
+    
+    SKAction *boostSequence = [SKAction sequence:@[boost, wait, reset]];
+    [self runAction:boostSequence completion:^{
+        _isBoostOn = NO;
+    }];
+}
+
 -(void)flashBoostLabel
 {
     SKLabelNode *boostButtonText = [SKLabelNode labelNodeWithText:@"Boost!"];
@@ -341,6 +359,13 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
         } else {
             _touchLocation = [touch locationInNode:self];
             _didChargeOpponent = YES;
+            
+            SKNode *node = [self nodeAtPoint:_touchLocation];
+            
+            // If boost button is touched, turn on stength boost
+            if ([node.name isEqualToString:@"boostButton"]) {
+                _isBoostOn = YES;
+            }
         }
     }
 }
@@ -443,10 +468,10 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
 
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
-    
-//    if (_isBoostOn == YES) {
-//        _isBoostOn = NO;
-//    }
+    if (_isBoostOn == YES) {
+        [self boostHeroStrengthBy:1.5 forDuration:3.0];
+    }
+
 }
 
 -(void)animateWithPulse:(SKNode *)node
