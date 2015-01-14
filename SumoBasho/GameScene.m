@@ -119,9 +119,7 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
     _ring.physicsBody.contactTestBitMask = heroCategory | opponentCategory;
     _ring.physicsBody.dynamic = NO;
     [self addChild:_ring];
-    
-    // Run randomized boost label flash sequence
-    [self flashBoostLabel];
+
     
     // Generate full pool of opponents' rank levels and titles
     _opponentPool = [OpponentGenerator opponentPool];
@@ -191,6 +189,9 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
     SKAction *chargeHeroSequence = [SKAction sequence:@[[SKAction waitForDuration:0.5 withRange:0.2],
                                                         [SKAction performSelector:@selector(chargeHero) onTarget:self]]];
     [_mainLayer runAction:[SKAction repeatActionForever: chargeHeroSequence]];
+    
+    // Run randomized boost label flash sequence
+    [_mainLayer runAction:[SKAction performSelector:@selector(flashBoostLabel) onTarget:self]];
 }
 
 // Turn hero and opponent to face each other
@@ -241,7 +242,6 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
         [_hero runAction:sumoCharging];
         _isAnimationA = YES;
     }
-
     
     // Move hero * hero's strength
     CGVector chargeVector;
@@ -322,7 +322,7 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
     }];
     
     SKAction *boostButtonSequence = [SKAction sequence:@[waitLong, position, add, appear, waitShort, disappear, remove]];
-    [self runAction:[SKAction repeatActionForever:boostButtonSequence]];
+    [_mainLayer runAction:[SKAction repeatActionForever:boostButtonSequence]];
 }
 
 -(int)calculateStrength:(int)rankLevel
@@ -444,12 +444,10 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
     
-    if (_isBoostOn == YES) {
-        [self flashBoostLabel];
-        _isBoostOn = NO;
-    }
-    
-    
+//    if (_isBoostOn == YES) {
+//        [self flashBoostLabel];
+//        _isBoostOn = NO;
+//    }
 }
 
 -(void)animateWithPulse:(SKNode *)node
