@@ -314,42 +314,33 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
 
 -(void)flashBoostLabel
 {
-    SKLabelNode *boostButtonText = [SKLabelNode labelNodeWithText:@"Boost!"];
-    boostButtonText.name = @"boostButton";
-    boostButtonText.fontColor = [UIColor whiteColor];
-    boostButtonText.fontSize = 15;
-    boostButtonText.fontName = GAME_FONT;
-    
-    SKSpriteNode *boostButtonBacking = [SKSpriteNode
-                                        spriteNodeWithColor:[UIColor orangeColor]
-                                        size:CGSizeMake(self.size.width/7, self.size.width/20)];
-    boostButtonBacking.name = @"boostButton";
-    [boostButtonBacking addChild:boostButtonText];
-    boostButtonText.position = CGPointMake(0, -boostButtonBacking.size.height/5);
+    SKSpriteNode *boostButton = [SKSpriteNode spriteNodeWithImageNamed:@"ChankoBoost"];
+    boostButton.name = @"boostButton";
     
     SKAction *waitLong = [SKAction waitForDuration:10.0 withRange:1.0];
     SKAction *position = [SKAction runBlock:^{
+        
         CGFloat randomX = randomInRange(-_boostLayer.size.width/2, _boostLayer.size.width/2);
         CGFloat randomY = randomInRange(-_boostLayer.size.height/2, _boostLayer.size.height/2);
         
-        boostButtonBacking.position = CGPointMake(randomX, randomY);
+        boostButton.position = CGPointMake(randomX, randomY);
     }];
     
     SKAction *add = [SKAction runBlock:^{
-        [_boostLayer addChild:boostButtonBacking];
+        [_boostLayer addChild:boostButton];
     }];
     
     SKAction *appear = [SKAction runBlock:^{
-        [boostButtonBacking runAction:[SKAction fadeAlphaTo:1.0 duration:1.0]];
+        [boostButton runAction:[SKAction fadeAlphaTo:1.0 duration:1.0]];
     }];
     
     SKAction *waitShort = [SKAction waitForDuration:2.0];
     SKAction *disappear = [SKAction runBlock:^{
-        [boostButtonBacking runAction:[SKAction fadeAlphaTo:0.0 duration:1.0]];
+        [boostButton runAction:[SKAction fadeAlphaTo:0.0 duration:1.0]];
     }];
     
     SKAction *remove = [SKAction runBlock:^{
-        [boostButtonBacking removeFromParent];
+        [boostButton removeFromParent];
     }];
     
     SKAction *boostButtonSequence = [SKAction sequence:@[waitLong, position, add, appear, waitShort, disappear, remove]];
