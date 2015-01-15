@@ -28,6 +28,7 @@
     SKSpriteNode *_boostLayer;
     CGPoint _touchLocation;
     SKShapeNode *_ring;
+    GameLabel *_heroStrengthLabel;
     GameLabel *_heroPointsLabel;
     GameLabel *_opponentPointsLabel;
     NSMutableDictionary *_opponentPool;
@@ -119,7 +120,6 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
     _ring.physicsBody.contactTestBitMask = heroCategory | opponentCategory;
     _ring.physicsBody.dynamic = NO;
     [self addChild:_ring];
-
     
     // Generate full pool of opponents' rank levels and titles
     _opponentPool = [OpponentGenerator opponentPool];
@@ -132,14 +132,29 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
 
 -(void)newGame
 {
-
     [_mainLayer removeAllChildren];
+    [_boostLayer removeAllChildren];
     
     // Re-apply ring bit mask
     _ring.physicsBody.categoryBitMask = ringCategory;
     
+    
     // Randomly select next opponent rank level and title from those remaining in pool
-    OpponentGenerator *opponent = [OpponentGenerator opponentFromPool:_opponentPool];
+    OpponentGenerator *opponentStats = [OpponentGenerator opponentFromPool:_opponentPool];
+    
+    // Add user-controlled HERO SPRITENODE
+    _hero = [Hero heroWithImage:@"SumoSprite_2" name:@"Hero" position:CGPointMake(-45, 0)];
+    _hero.strength = [self calculateStrength:[[GameData sharedData] currentRankLevel]] * HERO_STRENGTH_DILUTION;
+    _hero.physicsBody.categoryBitMask = heroCategory;
+    _hero.physicsBody.collisionBitMask = opponentCategory;
+    [_mainLayer addChild:_hero];
+    
+    // Add computer-controlled OPPONENT SPRITENODE
+    _opponent = [Hero heroWithImage:@"SumoSprite_2_Red" name:@"Opponent" position:CGPointMake(45, 0)];
+    _opponent.strength = [self calculateStrength:[opponentStats rankLevel]];
+    _opponent.physicsBody.categoryBitMask = opponentCategory;
+    _opponent.physicsBody.collisionBitMask = heroCategory;
+    [_mainLayer addChild:_opponent];
     
     GameLabel *tapToBeginLabel = [GameLabel gameLabelWithFontSize:20.0];
     tapToBeginLabel.name = @"tapToBeginLabel";
@@ -158,24 +173,24 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
     GameLabel *opponentTitleLabel = [GameLabel gameLabelWithFontSize:15.0];
     opponentTitleLabel.position = CGPointMake(0.95 * self.size.width/2, 0.75 * self.size.height/2);
     opponentTitleLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
-    opponentTitleLabel.text = [opponent rankTitle];
+    opponentTitleLabel.text = [opponentStats rankTitle];
     [_mainLayer addChild:opponentTitleLabel];
     
-    // Add user-controlled hero
-    _hero = [Hero heroWithImage:@"SumoSprite_2" name:@"Hero" position:CGPointMake(-45, 0)];
-    _hero.strength = [self calculateStrength:[[GameData sharedData] currentRankLevel]] * HERO_STRENGTH_DILUTION;
-    _hero.physicsBody.categoryBitMask = heroCategory;
-    _hero.physicsBody.collisionBitMask = opponentCategory;
-    [_mainLayer addChild:_hero];
+    // Add HERO STRENGTH label
+    _heroStrengthLabel = [GameLabel gameLabelWithFontSize:15.0];
+    _heroStrengthLabel.position = CGPointMake(0.95 * -self.size.width/2, 0.65 * self.size.height/2);
+    _heroStrengthLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
+    _heroStrengthLabel.text = [NSString stringWithFormat:@"Strength: %.f", _hero.strength / HERO_STRENGTH_DILUTION];
+    [_mainLayer addChild:_heroStrengthLabel];
     
-    // Add computer-controlled opponent
-    _opponent = [Hero heroWithImage:@"SumoSprite_2_Red" name:@"Opponent" position:CGPointMake(45, 0)];
-    _opponent.strength = [self calculateStrength:[opponent rankLevel]];
-    _opponent.physicsBody.categoryBitMask = opponentCategory;
-    _opponent.physicsBody.collisionBitMask = heroCategory;
-    [_mainLayer addChild:_opponent];
+    // Add OPPONENT STRENGTH label
+    GameLabel *opponentStrengthLabel = [GameLabel gameLabelWithFontSize:15.0];
+    opponentStrengthLabel.position = CGPointMake(0.95 * self.size.width/2, 0.65 * self.size.height/2);
+    opponentStrengthLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
+    opponentStrengthLabel.text = [NSString stringWithFormat:@"Strength: %.f", _opponent.strength];
+    [_mainLayer addChild:opponentStrengthLabel];
     
-    [_hero runAction:[SKAction rotateByAngle: 0 duration:0.0]];
+    [_hero runAction:[SKAction rotateByAngle:0.0 duration:0.0]];
     [_opponent runAction:[SKAction rotateByAngle: M_PI duration:0.0]];
 }
 
@@ -210,7 +225,6 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
          meanStrength:(CGFloat)meanStrength
           variability:(CGFloat)variability
 {
-    
     CGFloat trueStrength = randomInRange(meanStrength * (1 - variability), meanStrength * (1 + variability));
     
     SKAction *chargeAction = [SKAction customActionWithDuration:0.5 actionBlock:^(SKNode *node, CGFloat elapsedTime){
@@ -218,7 +232,6 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
     }];
     
     [node runAction:chargeAction];
-
 }
 
 -(void)chargeOpponent
@@ -280,7 +293,6 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
     chargeVector.dy = _hero.position.y - _opponent.position.y;
     chargeVector = toUnitVector(chargeVector);
     
-
     [self chargeSequence:_opponent chargeVector:chargeVector meanStrength:_opponent.strength variability:0.25];
 }
 
@@ -289,7 +301,7 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
     CGFloat normalStrength = _hero.strength;
     
     SKAction *boost = [SKAction runBlock:^{
-        _hero.strength = normalStrength + boostFactor;
+        _hero.strength = normalStrength * boostFactor;
     }];
     SKAction *wait = [SKAction waitForDuration:duration];
     SKAction *reset = [SKAction runBlock:^{
@@ -297,9 +309,7 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
     }];
     
     SKAction *boostSequence = [SKAction sequence:@[boost, wait, reset]];
-    [self runAction:boostSequence completion:^{
-        _isBoostOn = NO;
-    }];
+    [self runAction:boostSequence];
 }
 
 -(void)flashBoostLabel
@@ -317,7 +327,6 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
     [boostButtonBacking addChild:boostButtonText];
     boostButtonText.position = CGPointMake(0, -boostButtonBacking.size.height/5);
     
-
     SKAction *waitLong = [SKAction waitForDuration:10.0 withRange:1.0];
     SKAction *position = [SKAction runBlock:^{
         CGFloat randomX = randomInRange(-_boostLayer.size.width/2, _boostLayer.size.width/2);
@@ -325,16 +334,20 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
         
         boostButtonBacking.position = CGPointMake(randomX, randomY);
     }];
+    
     SKAction *add = [SKAction runBlock:^{
         [_boostLayer addChild:boostButtonBacking];
     }];
+    
     SKAction *appear = [SKAction runBlock:^{
         [boostButtonBacking runAction:[SKAction fadeAlphaTo:1.0 duration:1.0]];
     }];
-    SKAction *waitShort = [SKAction waitForDuration:1.0];
+    
+    SKAction *waitShort = [SKAction waitForDuration:2.0];
     SKAction *disappear = [SKAction runBlock:^{
         [boostButtonBacking runAction:[SKAction fadeAlphaTo:0.0 duration:1.0]];
     }];
+    
     SKAction *remove = [SKAction runBlock:^{
         [boostButtonBacking removeFromParent];
     }];
@@ -364,6 +377,7 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
             
             // If boost button is touched, turn on stength boost
             if ([node.name isEqualToString:@"boostButton"]) {
+                [[self childNodeWithName:@"boostButton"] removeFromParent];
                 _isBoostOn = YES;
             }
         }
@@ -462,16 +476,18 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
         [self chargeOpponent];
         _didChargeOpponent = NO;
     }
-    
     [self rotateToFace];
 }
 
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
     if (_isBoostOn == YES) {
-        [self boostHeroStrengthBy:1.5 forDuration:3.0];
+        [self boostHeroStrengthBy:1.5 forDuration:5.0];
+        _isBoostOn = NO;
     }
-
+    
+    // Keep HERO STRENGTH label updated as boost level changes
+    _heroStrengthLabel.text = [NSString stringWithFormat:@"Strength: %.f", _hero.strength / HERO_STRENGTH_DILUTION];
 }
 
 -(void)animateWithPulse:(SKNode *)node
@@ -481,5 +497,4 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
     SKAction *pulse = [SKAction sequence:@[disappear, appear]];
     [node runAction:[SKAction repeatActionForever:pulse]];
 }
-
 @end
