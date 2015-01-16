@@ -368,8 +368,6 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
             SKNode *node = [self nodeAtPoint:_touchLocation];
             
             // If boost button is touched, turn on stength boost
-            NSLog(@"Node name: %@", node.name);
-            NSLog(@"Node parent: %@", node.parent);
             if ([node.name isEqualToString:@"boostButton"]) {
                 [_mainLayer removeActionForKey:@"boostButtonSequence"];
                 [[_boostLayer childNodeWithName:@"boostButton"] removeFromParent];
