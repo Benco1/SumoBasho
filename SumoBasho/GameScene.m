@@ -35,7 +35,7 @@
 }
 
 CGFloat static const STRENGTH_BASE = 20.0;
-CGFloat static const HERO_STRENGTH_DILUTION = 0.5; // 1 = no dilution, 0 = full dilution = 0 strength
+CGFloat static const HERO_STRENGTH_DILUTION = 0.66; // 1 = no dilution, 0 = full dilution = 0 strength
 CGFloat static const STRENGTH_MAX = 50;
 
 static NSString *GAME_FONT = @"AmericanTypewriter-Bold";
@@ -90,6 +90,7 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
     // Add BOOSTLAYER
     _boostLayer = [SKSpriteNode spriteNodeWithColor:0 size:CGSizeMake(self.size.width * 0.8, self.size.height * 0.7)];
     _boostLayer.position = CGPointMake(0, -self.size.height/20);
+    _boostLayer.name = @"boostLayer";
     _boostLayer.zPosition = 1;
     [self addChild:_boostLayer];
 
@@ -317,7 +318,7 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
     SKSpriteNode *boostButton = [SKSpriteNode spriteNodeWithImageNamed:@"ChankoBoost"];
     boostButton.name = @"boostButton";
     
-    SKAction *waitLong = [SKAction waitForDuration:10.0 withRange:1.0];
+    SKAction *waitLong = [SKAction waitForDuration:4.0 withRange:2.0];
     SKAction *position = [SKAction runBlock:^{
         
         CGFloat randomX = randomInRange(-_boostLayer.size.width/2, _boostLayer.size.width/2);
@@ -367,8 +368,11 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
             SKNode *node = [self nodeAtPoint:_touchLocation];
             
             // If boost button is touched, turn on stength boost
+            NSLog(@"Node name: %@", node.name);
+            NSLog(@"Node parent: %@", node.parent);
             if ([node.name isEqualToString:@"boostButton"]) {
-                [[self childNodeWithName:@"boostButton"] removeFromParent];
+                [_mainLayer removeActionForKey:@"boostButtonSequence"];
+                [[_boostLayer childNodeWithName:@"boostButton"] removeFromParent];
                 _isBoostOn = YES;
             }
         }
