@@ -66,22 +66,21 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
     self.anchorPoint = CGPointMake(0.5, 0.5);
     self.physicsWorld.contactDelegate = self;
     self.physicsWorld.gravity = CGVectorMake(0.0, 0.0);
+    self.backgroundColor = [UIColor purpleColor];
     
-    SKTexture *backgroundTexture = [SKTexture textureWithImageNamed:@"ClayBackground"];
+    SKTexture *backgroundTexture = [SKTexture textureWithImageNamed:@"FullBackground"];
     SKSpriteNode *background = [SKSpriteNode spriteNodeWithTexture:backgroundTexture];
-    background.xScale = 2.0;
-    background.yScale = 2.0;
     background.position = self.anchorPoint;
     background.anchorPoint = self.anchorPoint;
     background.zPosition = 0;
-    [self addChild:background];
+    background.size = self.frame.size;
     
-    SKTexture *ringTexture = [SKTexture textureWithImageNamed:@"Ring"];
-    SKSpriteNode *ring = [SKSpriteNode spriteNodeWithTexture:ringTexture];
-    ring.position = self.anchorPoint;
-    ring.anchorPoint = self.anchorPoint;
-    ring.zPosition = 0;
-    [self addChild:ring];
+    // Scale for 1.5 aspect ratio (i.e., 4s)
+    if ((self.size.width / self.size.height) == 1.5) {
+        background.xScale = 1.75 / 1.5;
+        background.yScale = 1.0;
+    }
+    [self addChild:background];
     
     // Add MAINLAYER
     _mainLayer = [[SKNode alloc] init];
@@ -110,7 +109,7 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
     
     // Add RING BOUNDARY
     CGMutablePathRef circlePath = CGPathCreateMutable();
-    CGPathAddArc(circlePath, NULL, 0, 0, 0.9 * self.size.height/2, 0, M_PI * 2, YES);
+    CGPathAddArc(circlePath, NULL, 0, 0, 0.85 * self.size.height/2, 0, M_PI * 2, YES);
     _ring = [SKShapeNode shapeNodeWithPath:circlePath];
     _ring.position = CGPointMake(0.0, 0.0);
     _ring.zPosition = 1.0;
@@ -144,20 +143,21 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
     OpponentGenerator *opponentStats = [OpponentGenerator opponentFromPool:_opponentPool];
     
     // Add user-controlled HERO SPRITENODE
-    _hero = [Hero heroWithImage:@"SumoSprite_2" name:@"Hero" position:CGPointMake(-45, 0)];
+    _hero = [Hero heroWithImage:@"SumoSprite_2" name:@"Hero" position:CGPointMake(-50.0, 0)];
     _hero.strength = [self calculateStrength:[[GameData sharedData] currentRankLevel]] * HERO_STRENGTH_DILUTION;
     _hero.physicsBody.categoryBitMask = heroCategory;
     _hero.physicsBody.collisionBitMask = opponentCategory;
     [_mainLayer addChild:_hero];
     
     // Add computer-controlled OPPONENT SPRITENODE
-    _opponent = [Hero heroWithImage:@"SumoSprite_2_Red" name:@"Opponent" position:CGPointMake(45, 0)];
+    _opponent = [Hero heroWithImage:@"SumoSprite_2_Red" name:@"Opponent" position:CGPointMake(50.0, 0)];
     _opponent.strength = [self calculateStrength:[opponentStats rankLevel]];
     _opponent.physicsBody.categoryBitMask = opponentCategory;
     _opponent.physicsBody.collisionBitMask = heroCategory;
     [_mainLayer addChild:_opponent];
     
     GameLabel *tapToBeginLabel = [GameLabel gameLabelWithFontSize:20.0];
+    tapToBeginLabel.position = CGPointMake(0, -self.size.height/6);
     tapToBeginLabel.name = @"tapToBeginLabel";
     tapToBeginLabel.text = @"tap to begin";
     [self addChild:tapToBeginLabel];
@@ -427,10 +427,10 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
 -(void)gameOver
 {
     // Game over label
-    GameLabel *gameOverLabel = [GameLabel gameLabelWithFontSize:20.0];
+    GameLabel *gameOverLabel = [GameLabel gameLabelWithFontSize:30.0];
+    gameOverLabel.position = CGPointMake(0, self.size.height/6);
     gameOverLabel.name = @"gameOverLabel";
     gameOverLabel.text = [NSString stringWithFormat:@"%@ Wins!", self.matchWinner];
-    gameOverLabel.position = CGPointMake(0, 50);
     [self addChild:gameOverLabel];
     
     _currentPointsTotal = self.heroPoints + self.opponentPoints;
@@ -440,6 +440,7 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
         [_mainLayer removeAllActions];
         
         GameLabel *tapToResetLabel = [GameLabel gameLabelWithFontSize:20.0];
+        tapToResetLabel.position = CGPointMake(0, -self.size.height/6);
         tapToResetLabel.name = @"tapToResetLabel";
         tapToResetLabel.text = @"tap to reset";
         [self addChild:tapToResetLabel];

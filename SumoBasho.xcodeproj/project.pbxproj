@@ -12,9 +12,8 @@
 		54326BC81A60E161000EBA04 /* SumoSprite_2_Red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 54326BC71A60E161000EBA04 /* SumoSprite_2_Red@2x.png */; };
 		54326BCC1A617D69000EBA04 /* SumoSprite2.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 54326BCB1A617D69000EBA04 /* SumoSprite2.atlas */; };
 		54326BCE1A61B010000EBA04 /* SumoSprite2_Red.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 54326BCD1A61B010000EBA04 /* SumoSprite2_Red.atlas */; };
-		54326BD81A6232F0000EBA04 /* ClayBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 54326BD71A6232F0000EBA04 /* ClayBackground.png */; };
-		54326BDC1A62413E000EBA04 /* Ring@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 54326BDB1A62413E000EBA04 /* Ring@2x.png */; };
 		54326BDF1A632D01000EBA04 /* GameLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 54326BDE1A632D01000EBA04 /* GameLabel.m */; };
+		54853E811A6CC5DB008C3A73 /* FullBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 54853E801A6CC5DB008C3A73 /* FullBackground@2x.png */; };
 		5499A7C21A5A466000319F76 /* RankManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5499A7C11A5A466000319F76 /* RankManager.m */; };
 		549B3A681A59E34000EBE388 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 549B3A671A59E34000EBE388 /* main.m */; };
 		549B3A6B1A59E34000EBE388 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 549B3A6A1A59E34000EBE388 /* AppDelegate.m */; };
@@ -49,10 +48,9 @@
 		54326BC71A60E161000EBA04 /* SumoSprite_2_Red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SumoSprite_2_Red@2x.png"; sourceTree = "<group>"; };
 		54326BCB1A617D69000EBA04 /* SumoSprite2.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = SumoSprite2.atlas; sourceTree = "<group>"; };
 		54326BCD1A61B010000EBA04 /* SumoSprite2_Red.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = SumoSprite2_Red.atlas; sourceTree = "<group>"; };
-		54326BD71A6232F0000EBA04 /* ClayBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ClayBackground.png; sourceTree = "<group>"; };
-		54326BDB1A62413E000EBA04 /* Ring@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Ring@2x.png"; sourceTree = "<group>"; };
 		54326BDD1A632D01000EBA04 /* GameLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameLabel.h; sourceTree = "<group>"; };
 		54326BDE1A632D01000EBA04 /* GameLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameLabel.m; sourceTree = "<group>"; };
+		54853E801A6CC5DB008C3A73 /* FullBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FullBackground@2x.png"; sourceTree = "<group>"; };
 		5499A7C01A5A466000319F76 /* RankManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RankManager.h; sourceTree = "<group>"; };
 		5499A7C11A5A466000319F76 /* RankManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RankManager.m; sourceTree = "<group>"; };
 		549B3A621A59E34000EBE388 /* SumoBasho.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SumoBasho.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,8 +122,7 @@
 				54326BC31A60DFFD000EBA04 /* SumoSprite_2@2x.png */,
 				54326BC71A60E161000EBA04 /* SumoSprite_2_Red@2x.png */,
 				54AE12C51A679A2100C68E4A /* ChankoBoost@2x.png */,
-				54326BD71A6232F0000EBA04 /* ClayBackground.png */,
-				54326BDB1A62413E000EBA04 /* Ring@2x.png */,
+				54853E801A6CC5DB008C3A73 /* FullBackground@2x.png */,
 				54326BCD1A61B010000EBA04 /* SumoSprite2_Red.atlas */,
 				54326BCB1A617D69000EBA04 /* SumoSprite2.atlas */,
 				543039481A5F968A0078BC80 /* OpponentGenerator.h */,
@@ -268,11 +265,10 @@
 				549B3A7B1A59E34000EBE388 /* LaunchScreen.xib in Resources */,
 				549B3A781A59E34000EBE388 /* Images.xcassets in Resources */,
 				549B3A701A59E34000EBE388 /* GameScene.sks in Resources */,
-				54326BDC1A62413E000EBA04 /* Ring@2x.png in Resources */,
 				549B3A761A59E34000EBE388 /* Main.storyboard in Resources */,
-				54326BD81A6232F0000EBA04 /* ClayBackground.png in Resources */,
 				54AE12C61A679A2100C68E4A /* ChankoBoost@2x.png in Resources */,
 				549B3A991A59F74400EBE388 /* Notes.rtf in Resources */,
+				54853E811A6CC5DB008C3A73 /* FullBackground@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
