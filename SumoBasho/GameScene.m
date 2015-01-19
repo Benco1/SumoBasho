@@ -113,7 +113,8 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
     _ring = [SKShapeNode shapeNodeWithPath:circlePath];
     _ring.position = CGPointMake(0.0, 0.0);
     _ring.zPosition = 1.0;
-    _ring.strokeColor = [UIColor redColor];
+    _ring.strokeColor = 0;
+//    _ring.strokeColor = [UIColor redColor];
     _ring.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromPath:circlePath];
     _ring.physicsBody.categoryBitMask = ringCategory;
     _ring.physicsBody.collisionBitMask = 0;

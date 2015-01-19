@@ -25,15 +25,15 @@
     hero.physicsBody.angularVelocity = 0.1;
     hero.physicsBody.restitution = 0.9;
     
-    SKSpriteNode *heroAnchor = [SKSpriteNode spriteNodeWithColor:[UIColor whiteColor] size:CGSizeMake(5, 5)];
-    heroAnchor.position = hero.anchorPoint;
-    heroAnchor.name = @"heroAnchor";
-    [hero addChild:heroAnchor];
-
-    SKSpriteNode *face = [SKSpriteNode spriteNodeWithColor:[UIColor redColor] size:CGSizeMake(5, 5)];
-    face.position = CGPointMake(hero.size.width/2, 0);
-    face.name = @"face";
-    [hero addChild:face];
+//    SKSpriteNode *heroAnchor = [SKSpriteNode spriteNodeWithColor:[UIColor whiteColor] size:CGSizeMake(5, 5)];
+//    heroAnchor.position = hero.anchorPoint;
+//    heroAnchor.name = @"heroAnchor";
+//    [hero addChild:heroAnchor];
+//
+//    SKSpriteNode *face = [SKSpriteNode spriteNodeWithColor:[UIColor redColor] size:CGSizeMake(5, 5)];
+//    face.position = CGPointMake(hero.size.width/2, 0);
+//    face.name = @"face";
+//    [hero addChild:face];
     
     return hero;
 }
